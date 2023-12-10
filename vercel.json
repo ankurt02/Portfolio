@@ -19,10 +19,12 @@
       "commands": {
         "pre": [
           "if [ -d flutter ]; then cd flutter && git pull && cd .. ; else git clone https://github.com/flutter/flutter.git; fi",
+          "cd flutter",
           "ls",
-          "flutter/bin/flutter doctor",
-          "flutter/bin/flutter clean",
-          "flutter/bin/flutter config --enable-web"
+          "bin/flutter doctor",
+          "bin/flutter clean",
+          "bin/flutter config --enable-web",
+          "cd .."
         ]
       }
     }
