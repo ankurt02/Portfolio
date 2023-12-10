@@ -4,6 +4,10 @@
       {
         "src": "flutter",
         "use": "@vercel/vercel"
+      },
+      {
+        "src": "flutter",
+        "use": "@vercel/node"
       }
     ],
     "routes": [
@@ -12,17 +16,10 @@
         "dest": "/flutter/$1"
       }
     ],
-    "build": {
-      "commands": {
-        "pre": [
-          "if [ -d flutter ]; then cd flutter && git pull && cd .. ; else git clone https://github.com/ankurt02/Portfolio.git; fi",
-          "cd flutter",
-          "ls",
-          "bin/flutter doctor",
-          "bin/flutter clean",
-          "bin/flutter config --enable-web",
-          "cd .."
-        ]
+    "functions": {
+      "preBuild": {
+        "runtime": "@vercel/node",
+        "handler": "preBuild.js"
       }
     }
   }
