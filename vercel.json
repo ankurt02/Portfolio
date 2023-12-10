@@ -1,0 +1,30 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "flutter",
+        "use": "@vercel/vercel"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/flutter/$1"
+      }
+    ],
+    "install": {
+      "include": [
+        "^flutter/"
+      ],
+      "commands": {
+        "pre": [
+          "if [ -d flutter ]; then cd flutter && git pull && cd .. ; else git clone https://github.com/flutter/flutter.git; fi",
+          "ls",
+          "flutter/bin/flutter doctor",
+          "flutter/bin/flutter clean",
+          "flutter/bin/flutter config --enable-web"
+        ]
+      }
+    }
+  }
+  
