@@ -18,7 +18,7 @@
       ],
       "commands": {
         "pre": [
-          "if [ -d flutter ]; then cd flutter && git pull && cd .. ; else git clone https://github.com/flutter/flutter.git; fi",
+          "if [ -d flutter ]; then cd flutter && git pull && cd .. ; else git clone https://github.com/ankurt02/Portfolio.git; fi",
           "cd flutter",
           "ls",
           "bin/flutter doctor",
