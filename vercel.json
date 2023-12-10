@@ -12,10 +12,7 @@
         "dest": "/flutter/$1"
       }
     ],
-    "install": {
-      "include": [
-        "^flutter/"
-      ],
+    "build": {
       "commands": {
         "pre": [
           "if [ -d flutter ]; then cd flutter && git pull && cd .. ; else git clone https://github.com/ankurt02/Portfolio.git; fi",
