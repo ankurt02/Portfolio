@@ -4,10 +4,6 @@
       {
         "src": "flutter",
         "use": "@vercel/vercel"
-      },
-      {
-        "src": "flutter",
-        "use": "@vercel/node"
       }
     ],
     "routes": [
@@ -18,8 +14,8 @@
     ],
     "functions": {
       "preBuild": {
-        "runtime": "@vercel/node",
-        "handler": "preBuild.js"
+        "runtime": "vercel-node@2.0.11",
+        "handler": "vercel-pre-build.js"
       }
     }
   }
