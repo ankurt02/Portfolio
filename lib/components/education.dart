@@ -26,13 +26,13 @@ class _EducationState extends State<Education> {
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
       ),
-      padding: EdgeInsets.all(20.0),
-      height: 800,
+      padding: EdgeInsets.all(16.0),
+      height: 400,
 
       child: ListView(
         // crossAxisAlignment: CrossAxisAlignment.start,
-        clipBehavior: Clip.antiAlias,
-        shrinkWrap: true,
+        // clipBehavior: Clip.antiAlias,
+        // shrinkWrap: true,
         children: [
           Text(
             "Education",
@@ -50,55 +50,100 @@ class _EducationState extends State<Education> {
             shrinkWrap: true,
             scrollDirection: Axis.vertical,
             builder: TimelineTileBuilder.fromStyle(
-                itemCount: 4,
+                itemCount: 3,
                 contentsAlign: ContentsAlign.alternating,
                 contentsBuilder: (context, index) {
-                  return Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(12),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          RichText(
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: "10th Boards/AISSCE\n",
-                                  style: TextStyle(
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.black87
+                  return SizedBox(
+                    width: double.infinity,
+                    child: Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                  
+                  
+                            RichText(
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: 
+                                    index == 0 
+                                      ? "10th Boards/AISSE\n"
+                                      : index == 1 
+                                        ? "12th Boards/AISSCE\n" 
+                                        : "BE in Computer Science and Engineering\n",
+                                    style: TextStyle(
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black87
+                                    ),
                                   ),
-                                ),
-                                TextSpan(
-                                  text: "Year of passing : ",
-                                  style: TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.normal,
+                                  WidgetSpan(
+                                    child: SizedBox(
+                                      height: 32,
+                                    )
+                                  ),
+                                  TextSpan(
+                                    text: "Year of passing : ",
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.normal,
+                                    )
+                                  ),
+                                  TextSpan(
+                                    text:  
+                                    index == 0 
+                                      ? "2018\n"
+                                      : index == 1 
+                                        ? "2020\n" 
+                                        : "2025\n",
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.normal,
+                                    )
+                                  ),
+                                  // WidgetSpan(child: SizedBox(height: 20,)),
+                                  TextSpan(
+                                    text: index == 0 
+                                      ? "CBSE\n"
+                                      : index == 1 
+                                        ? "CBSE\n" 
+                                        : "Nitte Meenakshi Insitute of Technology\n",
+                                    style: TextStyle(
+                                      fontStyle: FontStyle.normal,
+                                      color: Colors.grey.shade900,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                    )
+                                  ),
+                                  TextSpan(
+                                    text: index == 0 
+                                      ? "Percentage : "
+                                      : index == 1 
+                                        ? "Percentage : " 
+                                        : "CGPA : ",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                    )
+                                  ),
+                                  TextSpan(
+                                    text: index == 0 
+                                      ? "89.4"
+                                      : index == 1 
+                                        ? "79.8" 
+                                        : "7.92",
                                   )
-                                ),
-                                TextSpan(
-                                  text: "2018",
-                                  style: TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.normal,
-                                  )
-                                ),
-                                // WidgetSpan(child: SizedBox(height: 20,)),
-                                TextSpan(
-                                  text: "\nLorem aliquyam invidunt magna sea sadipscing justo accusam ut labore justo. Est ipsum kasd sit tempor accusam no, dolores dolores.",
-                                  style: TextStyle(
-                                    fontStyle: FontStyle.normal,
-                                    color: Colors.grey.shade700,
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.normal,
-                                  )
-                                ),
-                              ]
+                                ]
+                              ),
                             ),
-                          )
-                        ],
+                  
+                  
+                  
+                            
+                          ],
+                        ),
                       ),
                     ),
                   );

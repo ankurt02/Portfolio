@@ -2,16 +2,19 @@
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class AnimatedIconButton extends StatefulWidget {
   final IconData iconData;
   final VoidCallback onTap;
+  final String title;
   const AnimatedIconButton({
-    Key ? key,
+    Key? key,
     // super.key,
     required this.iconData,
     required this.onTap,
+    required this.title,
   }) : super(key: key);
 
   @override
@@ -23,7 +26,11 @@ class _AnimatedContactState extends State<AnimatedIconButton> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        if (widget.onTap != null) {
+          widget.onTap();
+        }
+      },
       onHover: (val) {
         setState(() {
           isHoverring = val;
@@ -41,7 +48,7 @@ class _AnimatedContactState extends State<AnimatedIconButton> {
           top: 4.0,
         ),
         // padding: EdgeInsets.all(2.0),
-        child: Row(
+        child: Column(
           children: [
             Card(
               child: Padding(
@@ -52,9 +59,35 @@ class _AnimatedContactState extends State<AnimatedIconButton> {
                 ),
               ),
             ),
+            const SizedBox(
+              width: 4,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(4),
+                  child: Text(
+                    widget.title,
+                    style: TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.w500,
+                    ),                  
+                  ),
+                )
+              ],
+            )
           ],
         ),
       ),
     );
+  }
+
+  void launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

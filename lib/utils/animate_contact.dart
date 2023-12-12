@@ -27,7 +27,11 @@ class _AnimatedContactState extends State<AnimatedContact> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        if (widget.onTap != null) {
+          widget.onTap();
+        }
+      },
       onHover: (val) {
         setState(() {
           isHoverring = val;
