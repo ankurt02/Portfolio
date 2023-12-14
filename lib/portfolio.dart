@@ -86,8 +86,8 @@ class _PortfolioState extends State<Portfolio> {
                   numberOfParticles: screenWidth < 500
                                       ? 20
                                       : screenWidth < 1600
-                                          ? 150
-                                          : 120,
+                                          ? 100
+                                          : 100,
                   // awayAnimationCurve: Curves.bounceIn,
                   // awayRadius: 6,
                   // enableHover: false,
@@ -103,7 +103,7 @@ class _PortfolioState extends State<Portfolio> {
                   lineColor: Colors.amber.shade300,
                 ), 
           SingleChildScrollView(
-            
+
             child: Center(
               child: Column(
                 children: [
