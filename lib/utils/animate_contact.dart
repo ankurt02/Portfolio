@@ -27,7 +27,11 @@ class _AnimatedContactState extends State<AnimatedContact> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        if (widget.onTap != null) {
+          widget.onTap();
+        }
+      },
       onHover: (val) {
         setState(() {
           isHoverring = val;
@@ -67,6 +71,7 @@ class _AnimatedContactState extends State<AnimatedContact> {
                   style: TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.w500,
+                    // overflow: TextOverflow.ellipsis
                   ),
                 ),
                 // SizedBox(height: -1,),
