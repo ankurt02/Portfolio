@@ -10,7 +10,7 @@ class Skills extends StatefulWidget {
 }
 
 class _SkillsState extends State<Skills> {
-  final List<String> progLang = ["Python", "Java"];
+  final List<String> progLang = ["Python", "Java","Dart"];
   final List<String> frameworks = ["Flutter"];
   final List<String> otherSkills = ["Cloud", "MySQL"];
 

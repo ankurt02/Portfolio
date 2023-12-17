@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+// import 'dart:html';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -84,8 +86,8 @@ class SocialRow extends StatelessWidget {
 
 void _openInstagram() async {
   const String url = 'https://instagram.com/__ankurtiwary05__?igshid=OGQ5ZDc2ODk2ZA==';
-  if (await canLaunch(url)) {
-    await launch(url);
+  if (await canLaunchUrl(url as Uri)) {
+    await launchUrl(url as Uri);
   } else {
     throw 'Could not launch $url';
   }

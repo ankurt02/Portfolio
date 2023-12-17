@@ -1,11 +1,14 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:portfoilo_1/components/about.dart';
+import 'package:portfoilo_1/components/certifications.dart';
+import 'package:portfoilo_1/components/contaceme.dart';
 import 'package:portfoilo_1/components/education.dart';
 import 'package:portfoilo_1/components/footer.dart';
 import 'package:portfoilo_1/components/skills.dart';
@@ -22,33 +25,38 @@ class _PortfolioState extends State<Portfolio> {
   bool _isRunning = true;
   double screenWidth = 0.0;
   double screenHeight = 0.0;
-  List<Widget> navItems = [
-    Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ElevatedButton(
-        onPressed: () {},
-        child: Text("Education"),
-        style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(3)))),
-      ),
-    ),
-    Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ElevatedButton(
-        onPressed: () {},
-        child: Text("Skills"),
-        style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(3)))),
-      ),
-    ),
-  ];
+  
   bool isMobile = false;
   @override
   Widget build(BuildContext context) {
+    List<Widget> navItems = [
+    // Padding(
+    //   padding: const EdgeInsets.all(8.0),
+    //   child: ElevatedButton(
+    //     onPressed: () {},
+    //     child: Text("Education"),
+    //     style: ButtonStyle(
+    //         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+    //             RoundedRectangleBorder(
+    //                 borderRadius: BorderRadius.circular(3)))),
+    //   ),
+    // ),
+    Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextButton(
+        onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ContactMe()),
+            );},
+        child: Text("Contact Me"),
+        style: ButtonStyle(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16)))),
+      ),
+    ),
+  ];
     isMobile = MediaQuery.of(context).size.width > 700 ? false : true;
     screenWidth = MediaQuery.of(context).size.width;
     screenHeight = MediaQuery.of(context).size.height;
@@ -61,9 +69,13 @@ class _PortfolioState extends State<Portfolio> {
         // ),
         title: Text(
           "Ankur Tiwary",
+          style: GoogleFonts.lato(
+            color: Colors.black,
+            fontWeight: FontWeight.w400,
+          ),
         ),
         elevation: 5.0,
-        shadowColor: Colors.grey[350],
+        // shadowColor: Colors.grey[350],
         actions: isMobile ? null : navItems,
       ),
 
@@ -76,57 +88,61 @@ class _PortfolioState extends State<Portfolio> {
               ),
             )
           : null,
-      body: Stack(
-        children: [
-          ParticlesFly(
-                  height: screenHeight, 
-                  width: screenWidth,
-                  // onTapAnimation: true,
-                  connectDots: true,
-                  numberOfParticles: screenWidth < 500
-                                      ? 20
-                                      : screenWidth < 1600
-                                          ? 100
-                                          : 100,
-                  // awayAnimationCurve: Curves.bounceIn,
-                  // awayRadius: 6,
-                  // enableHover: false,
-                  // awayAnimationCurve: Curves.bounceOut,
-                  // awayAnimationDuration: Duration(seconds: 2),
-                  // hoverRadius: 100,
-                  speedOfParticles: 0.8,
-                  randColorList: [
-                    Colors.amber.shade300,
-                    Colors.amber.shade700,
-                    Colors.white38
+      body: Stack(children: [
+        ParticlesFly(
+          height: screenHeight,
+          width: screenWidth,
+          // onTapAnimation: true,
+          connectDots: true,
+          numberOfParticles: screenWidth < 500
+              ? 20
+              : screenWidth < 1600
+                  ? 100
+                  : 100,
+          // awayAnimationCurve: Curves.bounceIn,
+          // awayRadius: 6,
+          // enableHover: false,
+          // awayAnimationCurve: Curves.bounceOut,
+          // awayAnimationDuration: Duration(seconds: 2),
+          // hoverRadius: 100,
+          speedOfParticles: 0.8,
+          randColorList: [
+            Colors.amber.shade300,
+            Colors.amber.shade700,
+            Colors.white38
+          ],
+          lineColor: Colors.amber.shade300,
+        ),
+        SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: [
+                Wrap(
+                  alignment: WrapAlignment.center,
+                  children: [
+                    About(),
+                    Column(
+                      children: [
+                        Education(),
+                        Certifications(),
+                      ],
+                    )
                   ],
-                  lineColor: Colors.amber.shade300,
-                ), 
-          SingleChildScrollView(
+                ),
 
-            child: Center(
-              child: Column(
-                children: [
-                  Wrap(
-                    alignment: WrapAlignment.center,
-                    children: [
-                      About(), 
-                      Education()
-                    ],
-                  ),
-      
                 // skills
-                  Skills(),
-      
+                Skills(),
+
+                // Projects
+                // MyProjects(), make this using cards to display the projects
+
                 // footer
-                  Footer(),
-                ],
+                Footer(),
+              ],
             ),
           ),
-          ), 
-          
-        ]
-      ),
+        ),
+      ]),
     );
   }
 }

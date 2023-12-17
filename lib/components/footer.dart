@@ -54,7 +54,7 @@ class Footer extends StatelessWidget {
           children: [
 
             Text(
-              "Dveloped with Flutter 💙",
+              "Developed with Flutter 💙",
               style: GoogleFonts.nunito(
                 fontSize: 18,
                 color: Colors.white70,

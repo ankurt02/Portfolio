@@ -71,6 +71,7 @@ class _AnimatedContactState extends State<AnimatedContact> {
                   style: TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.w500,
+                    // overflow: TextOverflow.ellipsis
                   ),
                 ),
                 // SizedBox(height: -1,),

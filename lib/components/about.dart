@@ -20,6 +20,7 @@ class _AboutState extends State<About> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     return Container(
+      
       margin: const EdgeInsets.all(20),
       width: screenWidth < 900
           ? screenWidth * 0.9
@@ -30,16 +31,20 @@ class _AboutState extends State<About> {
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
       ),
-      padding: EdgeInsets.all(24.0),
+      padding: EdgeInsets.all(20.0),
       height: 800.0,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Column(
             children: [
-              Image.asset(
-                "assets/filecoinPhoto.png",
-                height: 156.0,
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.asset(
+                  "assets/filecoinPhoto.png",
+                  height: 156.0,
+                  
+                ),
               ),
               Text(
                 "Ankur Tiwary",
@@ -94,7 +99,7 @@ class _AboutState extends State<About> {
               ),
 
               Divider(
-                thickness: 2,
+                thickness: 1.5,
                 indent: 8,
                 endIndent: 8,
               ),
