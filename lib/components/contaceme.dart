@@ -1,18 +1,19 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, sort_child_properties_last
 import 'dart:html';
 
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:icons_plus/icons_plus.dart';
 import 'dart:convert';
 
-
 class ContactMe extends StatefulWidget {
   const ContactMe({super.key});
   @override
   State<ContactMe> createState() => _ContactMeState();
 }
+
 class _ContactMeState extends State<ContactMe> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController subjectController = TextEditingController();
@@ -43,7 +44,11 @@ class _ContactMeState extends State<ContactMe> {
               ),
             ),
             Container(
-              width: screenWidth / 3,
+              width: screenWidth < 900
+                  ? screenWidth / 1.5
+                  : screenWidth < 1600
+                      ? screenWidth / 3
+                      : screenWidth / 3,
               // height: screenHeight,
               padding: EdgeInsets.all(16),
               child: Padding(
@@ -107,7 +112,11 @@ class _ContactMeState extends State<ContactMe> {
                         top: 20,
                       ),
                       child: Container(
-                        width: screenWidth / 6,
+                        width: screenWidth < 900
+                            ? screenWidth / 1.5
+                            : screenWidth < 1600
+                                ? screenWidth / 3
+                                : screenWidth / 3,
                         height: 50,
                         child: ElevatedButton(
                             style: ButtonStyle(
@@ -120,8 +129,41 @@ class _ContactMeState extends State<ContactMe> {
                                       side: BorderSide.none)),
                             ),
                             onPressed: () {
-                              sendEmail();
-                              print("done");
+                              if (validateFields()) {
+                                sendEmail();
+                                print("done");
+                                final snackBar = SnackBar(
+                                  elevation: 0,
+                                  behavior: SnackBarBehavior.floating,
+                                  backgroundColor: Colors.transparent,
+                                  content: AwesomeSnackbarContent(
+                                    title: "Hi There!",
+                                    message: "Thanks for connecting.",
+                                    contentType: ContentType.success,
+                                  ),
+                                );
+
+                                ScaffoldMessenger.of(context)
+                                  ..hideCurrentSnackBar()
+                                  ..showSnackBar(snackBar);
+                              } else {
+                                print("Please fill in all fields");
+
+                                final snackBar = SnackBar(
+                                    elevation: 0,
+                                    behavior: SnackBarBehavior.floating,
+                                    backgroundColor: Colors.transparent,
+                                    content: AwesomeSnackbarContent(
+                                      title: "Warning!",
+                                      message: "Please fill all the fields",
+                                      contentType: ContentType.warning,
+                                      messageFontSize: 12,
+                                      titleFontSize: 16,
+                                    ));
+                                ScaffoldMessenger.of(context)
+                                  ..hideCurrentSnackBar()
+                                  ..showSnackBar(snackBar);
+                              }
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -131,12 +173,15 @@ class _ContactMeState extends State<ContactMe> {
                                   Icons.send_rounded,
                                   color: Colors.black87,
                                 ),
-                                Text(
-                                  "Submit",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 20,
-                                    color: Colors.black87,
+                                FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: Text(
+                                    "Submit",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 24,
+                                      color: Colors.black87,
+                                    ),
                                   ),
                                 )
                               ],
@@ -151,6 +196,13 @@ class _ContactMeState extends State<ContactMe> {
         ),
       ),
     );
+  }
+
+  bool validateFields() {
+    return nameController.text.isNotEmpty &&
+        emailController.text.isNotEmpty &&
+        subjectController.text.isNotEmpty &&
+        messageController.text.isNotEmpty;
   }
 
   Future sendEmail() async {
@@ -174,7 +226,7 @@ class _ContactMeState extends State<ContactMe> {
         }));
     print("done the part");
     print("Email sent with status code: ${response.statusCode}");
-  print("Response body: ${response.body}");
+    print("Response body: ${response.body}");
 
     return response.statusCode;
   }
