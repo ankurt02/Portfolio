@@ -86,8 +86,8 @@ class SocialRow extends StatelessWidget {
 
 void _openInstagram() async {
   const String url = 'https://instagram.com/__ankurtiwary05__?igshid=OGQ5ZDc2ODk2ZA==';
-  if (await canLaunchUrl(url as Uri)) {
-    await launchUrl(url as Uri);
+  if (await canLaunch(url)) {
+    await launch(url);
   } else {
     throw 'Could not launch $url';
   }
